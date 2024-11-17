@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.youaudio'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //JavaFX 기본탑재
+}
+
+application {
+    mainClassName = 'com.youaudio.HojaAudioPlayer'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.youaudio.HojaAudioPlayer'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
